@@ -2,6 +2,6 @@ require 'sinatra'
 
 class TelegramApp < Sinatra::Base
   get '/' do
-    'Hello World'
+    "Hello World #{ENV['API_TOKEN']}"
   end
 end
