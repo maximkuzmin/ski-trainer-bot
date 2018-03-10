@@ -1,0 +1,7 @@
+require 'sinatra'
+require 'sinatra/reloader'
+require_relative './lib/api_requester'
+require_relative './app/routes'
+require_relative './app/welcome'
+require_relative './app/concepts/concepts'
+require_relative './app/telegram/telegram_app'
