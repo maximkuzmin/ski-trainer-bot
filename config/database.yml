@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  pool:  10
+  timeout: 5000
+
+development:
+  <<: *default
+  database:  telegram_bot_dev
+
+test:
+  <<: *default
+  database: telegram_bot_test
+
+production:
+  <<: *default
+  host: <%= ENV['DATABASE_HOST'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>

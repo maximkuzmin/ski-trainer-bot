@@ -7,9 +7,11 @@ gem 'multi_json'
 gem 'pg'
 
 gem 'sinatra'
+gem 'sinatra-activerecord'
 gem 'sinatra-reloader'
-gem 'telegram-bot'
+gem 'telegram-bot-ruby'
 gem 'thin'
+gem 'rake'
 gem 'trailblazer'
 gem 'trailblazer-loader'
 

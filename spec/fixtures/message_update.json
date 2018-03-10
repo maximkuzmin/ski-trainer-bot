@@ -1,0 +1,23 @@
+{
+  "update_id ":487759866,
+  "message":{
+    "message_id ":76,
+    "from ":{
+      "id ":40441805,
+      "is_bot ":false,
+      "first_name ": "Максим ",
+      "last_name ": "Кузьмин ",
+      "username ": "maximkuzmin ",
+      "language_code ": "ru-RU "
+    },
+    "chat ":{
+      "id ":40441805,
+      "first_name ": "Максим ",
+      "last_name ": "Кузьмин ",
+      "username ": "maximkuzmin ",
+      "type ": "private "
+    },
+    "date ":1520670578,
+    "text ": "and again "
+  }
+}

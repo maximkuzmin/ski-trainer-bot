@@ -1,14 +1,17 @@
+require 'telegram/bot'
 require 'spec_helper'
 
-describe Telegram::Types do
-  let(:json){ "{\"update_id\":487759866,\"message\":{\"message_id\":76,\"from\":{\"id\":40441805,\"is_bot\":false,\"first_name\":\"Максим\",\"last_name\":\"Кузьмин\",\"username\":\"maximkuzmin\",\"language_code\":\"ru-RU\"},\"chat\":{\"id\":40441805,\"first_name\":\"Максим\",\"last_name\":\"Кузьмин\",\"username\":\"maximkuzmin\",\"type\":\"private\"},\"date\":1520670578,\"text\":\"and again\"}}" }
+describe Telegram do
+  let(:json){
+    "{\"update_id\":487759866,\"message\":{\"message_id\":76,\"from\":{\"id\":40441805,\"is_bot\":false,\"first_name\":\"Максим\",\"last_name\":\"Кузьмин\",\"username\":\"maximkuzmin\",\"language_code\":\"ru-RU\"},\"chat\":{\"id\":40441805,\"first_name\":\"Максим\",\"last_name\":\"Кузьмин\",\"username\":\"maximkuzmin\",\"type\":\"private\"},\"date\":1520670578,\"text\":\"and again\"}}"
+  }
   let(:params){ MultiJson.load(json, symbolize_keys: true) }
-  let(:subject){ Telegram::Types::Update.new(params) }
+  let(:subject){ Telegram::Bot::Types::Update.new(params) }
 
   context 'Update' do
     it 'has id && message' do
       expect(subject.update_id).to be
-      expect(subject.message).to be_a(Telegram::Types::Message)
+      expect(subject.message).to be_a(Telegram::Bot::Types::Message)
     end
   end
 
@@ -16,8 +19,8 @@ describe Telegram::Types do
     let(:message){ subject.message }
     it 'has id, from, date, chat, text fields' do
       expect(message.message_id).to be_a(Integer)
-      expect(message.from).to be_a(Telegram::Types::User)
-      expect(message.chat).to be_a(Telegram::Types::Chat)
+      expect(message.from).to be_a(Telegram::Bot::Types::User)
+      expect(message.chat).to be_a(Telegram::Bot::Types::Chat)
       expect(message.date).to be_a(Integer)
       expect(message.text).to be_a(String)
     end

@@ -1,3 +1,3 @@
 # frozen_string_literal: true
-
-require_relative 'telegram/telegram'
+require 'trailblazer'
+require_relative 'ski_bot/ski_bot'
