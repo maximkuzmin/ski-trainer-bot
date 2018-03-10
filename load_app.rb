@@ -2,7 +2,6 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'pg'
 require 'sinatra/activerecord'
-
 set :database_file, 'config/database.yml'
 
 require_relative './lib/api_requester'
