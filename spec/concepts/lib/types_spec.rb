@@ -26,7 +26,6 @@ describe Telegram do
     end
   end
 
-
   context 'chat' do
     let(:chat){ subject.message.chat }
     it 'has id, first_name, last_name, username, type' do

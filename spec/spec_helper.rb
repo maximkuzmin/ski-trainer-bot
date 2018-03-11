@@ -1,5 +1,8 @@
+require 'ryba'
 require 'rack/test'
 require 'rspec'
+require 'factory_bot'
+require 'support/factory_bot'
 
 ENV['RACK_ENV'] = 'test'
 ENV['BOT_TOKEN'] = 'BOT_TOKEN'

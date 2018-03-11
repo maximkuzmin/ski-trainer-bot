@@ -1,13 +1,7 @@
 # frozen_string_literal: true
 
-require 'sinatra'
-require 'multi_json'
-require 'yaml'
-require 'telegram/bot'
-require 'sinatra/reloader'
-
-# Endpoint for telegram webhook and its processing
-class TelegramApp < Sinatra::Base
+# Controller for telegram webhook endpoint and its processing
+class TelegramController < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   configure :development do
     register Sinatra::Reloader
@@ -29,7 +23,7 @@ class TelegramApp < Sinatra::Base
 
   def get_payload(request)
     json = request.body.read
-    puts json
+    # puts json
     MultiJson.load(json, symbolize_keys: true)
   end
 

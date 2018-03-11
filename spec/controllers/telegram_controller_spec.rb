@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TelegramApp do
+describe TelegramController do
   it 'should work at least' do
     get '/'
     expect(last_response.status).to eq(200)

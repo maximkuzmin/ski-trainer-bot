@@ -18,4 +18,6 @@ gem 'trailblazer-loader'
 group :test do
   gem 'rack-test'
   gem 'rspec'
+  gem 'ryba'
+  gem 'factory_bot'
 end
