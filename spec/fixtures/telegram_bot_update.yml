@@ -1,0 +1,18 @@
+:update_id: 487759884
+:message:
+  :message_id: 107
+  :from:
+    :id: 40441805
+    :is_bot: false
+    :first_name: Максим
+    :last_name: Кузьмин
+    :username: maximkuzmin
+    :language_code: ru-RU
+  :chat:
+    :id: 40441805
+    :first_name: Максим
+    :last_name: Кузьмин
+    :username: maximkuzmin
+    :type: private
+  :date: 1520785102
+  :text: привет

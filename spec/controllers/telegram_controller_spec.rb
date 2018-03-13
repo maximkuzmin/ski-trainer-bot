@@ -14,7 +14,13 @@ describe TelegramController do
     let(:endpoint_url){ "/webhook_#{ApiRequester::SECURE_STRING}" }
 
     it 'webhook should call SkiBot::Process operation' do
-      expect(SkiBot::Process).to receive(:call)
+      expect(SkiBot::Process).to receive(:call).with(
+        anything,
+        hash_including(
+          update: instance_of(Telegram::Bot::Types::Update),
+          client: instance_of(Telegram::Bot::Client)
+        )
+      )
       post endpoint_url, params.to_json
     end
   end

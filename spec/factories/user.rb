@@ -1,7 +1,10 @@
 FactoryBot.define do
   factory :user do
-    phone_number { Ryba::PhoneNumber.phone_number }
+    telegram_id { rand(1000000) }
     sex { %w[male female other].shuffle.first }
-    age { rand(99) }
+
+    trait :with_age do
+      age { rand(99) }
+    end
   end
 end

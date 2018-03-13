@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require 'yaml'
+require 'telegram/bot'
 
 # Controller for telegram webhook endpoint and its processing
 class TelegramController < Sinatra::Base
@@ -14,20 +16,22 @@ class TelegramController < Sinatra::Base
   post "/webhook_#{ApiRequester::SECURE_STRING}" do
     payload = get_payload(request)
     update = Telegram::Bot::Types::Update.new(payload)
-    SkiBot::Process.({}, update: update)
-    # bot.send_message chat_id: @update.message.chat.id,
-    #                  text: "You wrote #{@update.message.text}"
+    puts payload.to_yaml if ENV['RACK_ENV'] == 'development'
+    return if update.edited_message
+    SkiBot::Process.(params, update: update, client: client)
+    return if ENV['RACK_ENV'] == 'test'
+    client.api.send_message text: "hello!, you wrote: #{payload.to_yaml}",
+                            chat_id: update.message.chat&.id
   end
 
   private
 
   def get_payload(request)
     json = request.body.read
-    # puts json
     MultiJson.load(json, symbolize_keys: true)
   end
 
-  def bot
-    @bot ||= Telegram::Bot::Client.new(ApiRequester::API_TOKEN)
+  def client
+    @client ||= Telegram::Bot::Client.new(ApiRequester::API_TOKEN)
   end
 end

@@ -15,6 +15,9 @@ gem 'rake'
 gem 'trailblazer'
 gem 'trailblazer-loader'
 
+group :development do
+  #gem 'annotate'
+end
 group :test do
   gem 'rack-test'
   gem 'rspec'
