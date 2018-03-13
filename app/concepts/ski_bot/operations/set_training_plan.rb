@@ -2,29 +2,29 @@ module SkiBot
   class SetTrainingPlan < Trailblazer::Operation
     include SharedRegistrationgLogic
 
-    # ANSWERS = {
-    #   'мужчина' => 'male',
-    #   'женщина' => 'female',
-    #   'кто-то другой' => 'other'
-    # }
-    # QUESTION = 'Пожалуйста, сообщите нам ваш пол'
-    # AGAIN_QUESTION = 'Давайте попробуем еще раз?'
-    #
-    # step :decide_ask_or_store
-    # step :execute
-    #
-    # private
-    #
-    # def try_to_set(opts)
-    #   sex = ANSWERS[ opts[:text] ]
-    #   sex ? set(opts, sex) : ask_again(opts)
-    # end
-    #
-    # def set(opts, sex)
-    #   opts[:user].update_attribute(:sex, sex )
-    #   send_message(opts, 'Превосходно!')
-    #   clean_previous(opts[:from_id])
-    #   SkiBot::SetSex({}, **opts)
-    # end
+    QUESTION = 'Давайте выберем тренировочный план:'
+    AGAIN_QUESTION = 'Давайте попробуем выбрать план еще раз?'
+
+    step :decide_ask_or_store
+    step :execute
+
+    private
+    def reply_markup
+      Telegram::Bot::Types::ReplyKeyboardMarkup.new(
+        keyboard: TrainingPlan.pluck(:title),
+        one_time_keyboard: true
+      )
+    end
+
+    def try_to_set(opts)
+      training_plan = TrainingPlan.find_by(title: opts[:text])
+      training_plan ? set(opts, training_plan) : ask_again(opts)
+    end
+
+    def set(opts, training_plan)
+      opts[:user].update_attribute(:training_plan, training_plan)
+      send_message(opts, 'Отличный выбор!')
+      clean_previous(opts[:from_id])
+    end
   end
 end

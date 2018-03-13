@@ -54,7 +54,7 @@ module SkiBot
     def execute_operation(options, operation:, **opts)
       begin
         result = operation.call({}, **opts)
-        message_text = operaton['error']
+        message_text = operation['error'] || 'кажется ничего не произошло =('
       rescue => e
         result = false
         message_text = "Что-то пошло не так и произошла ошибка #{ e.inspect }"

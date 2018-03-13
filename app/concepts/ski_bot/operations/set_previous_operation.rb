@@ -3,7 +3,7 @@ module SkiBot
     step :set
 
     def set(options, from_id:, name:, **)
-      SkiBot::SessionStorage[from_id][:previous_operation] = name
+      SkiBot::SessionStorage[from_id][:previous] = name
     end
   end
 end

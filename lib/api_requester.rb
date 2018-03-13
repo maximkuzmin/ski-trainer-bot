@@ -3,7 +3,7 @@ require 'digest'
 require 'cowsay'
 
 class ApiRequester
-  APP_URL = ENV['APP_URL'] || 'b48e6140.ngrok.io'
+  APP_URL = ENV['APP_URL'] || '025a617c.ngrok.io'
   API_TOKEN = ENV['API_TOKEN'] || '550551464:AAFlSdLD_drATesOuE_LHSzCKmNElf9AYDU'
   SECURE_STRING = Digest::SHA256.hexdigest(API_TOKEN)
 

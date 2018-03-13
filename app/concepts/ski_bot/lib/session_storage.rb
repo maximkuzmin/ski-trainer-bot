@@ -24,7 +24,7 @@ module SkiBot
 
       def clean_previous(id)
         get(id)
-        @@storage[id.to_s][:previous] = nil
+        @@storage[id.to_s] = @@storage[id.to_s].merge(previous: nil)
       end
     end
   end

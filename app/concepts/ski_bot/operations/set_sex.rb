@@ -15,6 +15,13 @@ module SkiBot
 
     private
 
+    def reply_markup
+      Telegram::Bot::Types::ReplyKeyboardMarkup.new(
+        keyboard: [ANSWERS.keys],
+        one_time_keyboard: true
+      )
+    end
+
     def try_to_set(opts)
       sex = ANSWERS[ opts[:text] ]
       sex ? set(opts, sex) : ask_again(opts)

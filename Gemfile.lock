@@ -23,6 +23,7 @@ GEM
     concurrent-ruby (1.0.5)
     cowsay (0.3.0)
     daemons (1.2.6)
+    database_cleaner (1.6.2)
     declarative (0.0.10)
     declarative-builder (0.1.0)
       declarative-option (< 0.2.0)
@@ -154,6 +155,7 @@ PLATFORMS
 
 DEPENDENCIES
   cowsay
+  database_cleaner
   dry-struct
   dry-types
   factory_bot

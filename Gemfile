@@ -19,6 +19,7 @@ group :development do
   #gem 'annotate'
 end
 group :test do
+  gem 'database_cleaner'
   gem 'rack-test'
   gem 'rspec'
   gem 'ryba'

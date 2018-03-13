@@ -19,9 +19,9 @@ class TelegramController < Sinatra::Base
     puts payload.to_yaml if ENV['RACK_ENV'] == 'development'
     return if update.edited_message
     SkiBot::Process.(params, update: update, client: client)
-    return if ENV['RACK_ENV'] == 'test'
-    client.api.send_message text: "hello!, you wrote: #{payload.to_yaml}",
-                            chat_id: update.message.chat&.id
+    # return if ENV['RACK_ENV'] == 'test'
+    # client.api.send_message text: "hello!, you wrote: #{payload.to_yaml}",
+    #                         chat_id: update.message.chat&.id
   end
 
   private

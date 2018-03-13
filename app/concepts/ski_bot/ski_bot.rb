@@ -10,4 +10,10 @@ require_relative 'operations/user_registration'
 require_relative 'operations/normal_workflow'
 require_relative 'operations/process'
 module SkiBot
+  class Trailblazer::Operation
+    def self.call(*args)
+      puts self.name
+      super(*args)
+    end
+  end
 end

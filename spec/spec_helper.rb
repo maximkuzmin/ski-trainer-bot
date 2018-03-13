@@ -1,6 +1,7 @@
 require 'ryba'
 require 'rack/test'
 require 'rspec'
+require 'database_cleaner'
 require 'factory_bot'
 require 'support/factory_bot'
 require 'factories/telegram_bot_update'
@@ -21,4 +22,9 @@ end
 
 RSpec.configure do |config|
   config.include RSpecMixin
+
+  config.before(:example) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
 end

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SkiBot::SetSex do
   let!(:api){ double(Telegram::Bot::Api, send_message: true) }
   let!(:client){ instance_double(Telegram::Bot::Client, api: api) }
-  let(:user){ create(:user, age: 25) }
+  let(:user){ create(:user, age: 25, sex: nil) }
   let(:text){ 'some text' }
   let(:operation_params){{
     from_id: user.telegram_id,

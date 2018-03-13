@@ -11,12 +11,12 @@ module SkiBot
     private
 
     def ask(opts)
-      send_message opts, self.class::QUESTION
+      send_message opts, self.class::QUESTION, with_keyboard: true
       SkiBot::SetPreviousOperation.({}, name: self.class.name, **opts)
     end
 
     def ask_again(opts)
-      send_message(opts, self.class::AGAIN_QUESTION)
+      send_message(opts, self.class::AGAIN_QUESTION, with_keyboard: true)
       SkiBot::SetPreviousOperation.({}, name: self.class.name, **opts)
     end
 
@@ -24,11 +24,16 @@ module SkiBot
       SkiBot::SessionStorage.clean_previous(id)
     end
 
-    def send_message(opts, text)
-      opts[:client].api.send_message(
+    def send_message(opts, text, with_keyboard: false)
+      args = {
         text: text,
-        chat_id: opts[:from_id]
-      )
+        chat_id: opts[:from_id],
+      }
+
+      args.merge!(reply_markup: reply_markup) if with_keyboard
+      opts[:client].api.send_message(**args)
     end
+
+    def reply_markup; end
   end
 end

@@ -34,7 +34,6 @@ describe SkiBot::Process do
     end
 
     it 'should call selected operation' do
-
       expect(operation).to receive(:call).and_call_original
       block.call
     end
