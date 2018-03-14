@@ -23,8 +23,9 @@ module SkiBot
 
     def set(opts, training_plan)
       opts[:user].update_attribute(:training_plan, training_plan)
-      send_message(opts, 'Отличный выбор!')
+      send_message(opts, 'Отличный выбор!', keyboard: remove_keyboard)
       clean_previous(opts[:from_id])
+      SkiBot::NormalWorkFlow.({}, opts, previous: nil, text: '/start')
     end
   end
 end

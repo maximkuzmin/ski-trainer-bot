@@ -29,9 +29,9 @@ module SkiBot
 
     def set(opts, sex)
       opts[:user].update_attribute(:sex, sex )
-      send_message(opts, 'Превосходно!')
+      send_message(opts, 'Превосходно!', keyboard: remove_keyboard)
       clean_previous(opts[:from_id])
-      SkiBot::SetTrainingPlan.({}, **opts)
+      SkiBot::SetTrainingPlan.({}, **opts, previous: nil)
     end
   end
 end

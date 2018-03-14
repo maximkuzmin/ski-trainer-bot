@@ -15,6 +15,7 @@ require 'active_record'
 
 class User < ActiveRecord::Base
   belongs_to :training_plan
+  has_many :training_participations
 
   def is_filled?
     sex && age && training_plan

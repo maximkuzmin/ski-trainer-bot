@@ -19,10 +19,10 @@ module SkiBot
 
     def set(opts)
       opts[:user].update_attribute(:age, opts[:text] )
-      send_message(opts, 'Отличный возраст для лыжника!')
+      send_message(opts, 'Отличный возраст для лыжника!', keyboard: remove_keyboard)
 
       SkiBot::SessionStorage.clean_previous(opts[:from_id])
-      SkiBot::SetSex.({}, **opts)
+      SkiBot::SetSex.({}, **opts, previous: nil)
     end
   end
 end

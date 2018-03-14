@@ -10,6 +10,8 @@ module SkiBot
       SkiBot::SetAge,
       SkiBot::SetSex,
       SkiBot::SetTrainingPlan,
+      SkiBot::TrainingSelection,
+      SkiBot::ShowTraining,
     ].freeze
 
     QUESTION_CLASSES_WITH_NAMES = QUESTION_CLASSES
@@ -19,14 +21,19 @@ module SkiBot
 
     def parse_update(options, update:, **)
       message = update.message
-      return false unless message
+      callback_query = update.callback_query
+      return false unless message || callback_query
+      if callback_query
+        message = callback_query.message
+        options['text'] = callback_query.data
+      end
       options['message']    = message
-      options['from_id']    = message.from.id
-      options['first_name'] = message.from.first_name
-      options['last_name']  = message.from.last_name
-      options['username']   = message.from.username
+      options['from_id']    = message.chat.id
+      options['first_name'] = message.chat.first_name
+      options['last_name']  = message.chat.last_name
+      options['username']   = message.chat.username
       options['chat_id']    = message.chat.id
-      options['text']       = message.text
+      options['text']       ||= message.text
     end
 
     def find_user(options, from_id:, **)
@@ -38,6 +45,9 @@ module SkiBot
 
     def find_previous_question(options, from_id:, **)
       options['previous'] = SessionStorage[from_id][:previous]
+      p "*-" * 40
+      p options['previous']
+      p "--" * 40
       true
     end
 

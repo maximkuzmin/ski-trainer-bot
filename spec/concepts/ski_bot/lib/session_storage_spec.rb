@@ -13,5 +13,13 @@ describe SkiBot::SessionStorage do
         SkiBot::SessionStorage[:a]
       }.to(2)
     end
+
+    it 'cleans_previous' do
+      id = 123456789
+      SkiBot::SessionStorage[id][:previous] = 'SkiBot::Hello'
+      expect{ SkiBot::SessionStorage.clean_previous(id) }.to change{
+        SkiBot::SessionStorage[id][:previous]
+      }.to(nil)
+    end
   end
 end
