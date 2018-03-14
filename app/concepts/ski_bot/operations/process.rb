@@ -45,9 +45,6 @@ module SkiBot
 
     def find_previous_question(options, from_id:, **)
       options['previous'] = SessionStorage[from_id][:previous]
-      p "*-" * 40
-      p options['previous']
-      p "--" * 40
       true
     end
 

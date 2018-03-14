@@ -8,6 +8,7 @@ module SkiBot
     def find_training(options, from_id:, **opts)
       options['training'] = SessionStorage[from_id][:training] || options[:training]
       SkiBot::RememberTrainingInStorage.({}, training: options[:training], from_id: from_id)
+      SkiBot::SetPreviousOperation.({}, name: self.class.name, from_id: from_id, **opts)
     end
 
     def try_to_set(options, text:,  **opts)
@@ -39,7 +40,7 @@ module SkiBot
       buttons = []
       buttons.push Telegram::Bot::Types::InlineKeyboardButton.new(
         text: "Отметить тренировку как законченную #{training.title}",
-        callback_data: '/finish'
+        callback_data: 'finish'
       )
       buttons.push Telegram::Bot::Types::InlineKeyboardButton.new(
         text: "Назад к тренировкам",

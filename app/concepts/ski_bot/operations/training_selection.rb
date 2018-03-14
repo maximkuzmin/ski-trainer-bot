@@ -29,6 +29,7 @@ module SkiBot
       when *Training.pluck(:id).map(&:to_s)
         SkiBot::ShowTraining.({}, **options, training: Training.find(options[:text]))
       else
+        ask_again(options)
         show(options)
       end
     end
