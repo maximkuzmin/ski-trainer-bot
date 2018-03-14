@@ -1,8 +1,12 @@
 module SkiBot
   class TrainingSelection < Trailblazer::Operation
     include SharedRegistrationgLogic
+
+    AGAIN_QUESTION='Давайте попробуем еще раз?'
+
     step :understand_what_to_do
     step :execute
+
 
     def understand_what_to_do(options, previous:, text:, **opts)
       options['method'] = previous ? :try_to_set : :show
