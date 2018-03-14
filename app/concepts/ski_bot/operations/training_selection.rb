@@ -1,7 +1,6 @@
 module SkiBot
   class TrainingSelection < Trailblazer::Operation
     include SharedRegistrationgLogic
-    AGAIN_QUESTION = 'Давайте попробуем выбрать тренировку еще раз?'
     step :understand_what_to_do
     step :execute
 
@@ -30,7 +29,6 @@ module SkiBot
       when *Training.pluck(:id).map(&:to_s)
         SkiBot::ShowTraining.({}, **options, training: Training.find(options[:text]))
       else
-        ask_again(options)
         show(options)
       end
     end
